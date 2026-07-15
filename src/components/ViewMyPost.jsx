@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import NavigationBar from './NavigationBar';
-import axios from 'axios';
+import NavigationBar from './NavigationBar'
+import axios from 'axios'
 
-const ViewAll = () => {
+const ViewMyPost = () => {
 
-    const [data, changeDate] = useState([]);
+    const [data, changeDate] = useState([])
+
+    const [token, setToken] = useState(sessionStorage.getItem("token"))
+
+    const [userId, setuserId] = useState(
+        
+           { "userId": sessionStorage.getItem("userId")})
+        
 
     const fetchData = () => {
-        axios.post("http://localhost:3000/viewall",{}, {headers:{"token":sessionStorage.getItem("token"),"Content-Type":"application/json"}}).then(
+        axios.post("http://localhost:3000/viewmypost", userId, { headers: { "token": token, "Content-Type": "application/json" } }).then(
             (response) => {
+                console.log(response.data)
                 changeDate(response.data)
             }).catch(
                 (err) => {
@@ -25,17 +33,18 @@ const ViewAll = () => {
 
     return (
         <div>
-<NavigationBar />
+
+            <NavigationBar />
             <div className="container mt-5">
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
 
                         <div className="row g-3">
-                            
-                                {data.map(
-                                    (value, index) => {
-                                        return (
-                                            <div key={index} className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+
+                            {data.map(
+                                (value, index) => {
+                                    return (
+                                        <div key={index} className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                             <div className="card mb-3">
                                                 <div className="row g-0">
                                                     <div className="col-md-8">
@@ -46,21 +55,22 @@ const ViewAll = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                        )
-                                    }
-                                )}
+                                        </div>
+                                    )
+                                }
+                            )}
 
 
-                            
+
                         </div>
 
                     </div>
                 </div>
             </div>
 
+
         </div>
     )
 }
 
-export default ViewAll
+export default ViewMyPost
