@@ -54,6 +54,15 @@ const NavigationBar = () => {
                                     View Pets
                                 </Link>
                             </li>
+                            <li className="nav-item mx-2 mt-2 mt-lg-0">
+                                <Link
+                                    className="btn btn-light rounded-pill px-4 fw-semibold"
+                                    style={{ color: "#8B5E3C" }}
+                                    to="/viewall"
+                                >
+                                    View Pets
+                                </Link>
+                            </li>
 
                         </ul>
                     </div>
