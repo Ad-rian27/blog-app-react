@@ -1,10 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavigationBar = () => {
+
+    const navigate = useNavigate();
+
+    const LogOut = () => {
+        sessionStorage.clear();
+        navigate("/");
+    };
+
     return (
         <div>
-
             <nav
                 className="navbar navbar-expand-lg navbar-dark shadow-sm py-3"
                 style={{ backgroundColor: "#8B5E3C" }}
@@ -12,7 +19,7 @@ const NavigationBar = () => {
                 <div className="container">
 
                     <Link className="navbar-brand fw-bold fs-4" to="/">
-                        Pet Boarding Management
+                        Blog App
                     </Link>
 
                     <button
@@ -32,7 +39,7 @@ const NavigationBar = () => {
                                     className="btn btn-outline-light rounded-pill px-4 fw-semibold"
                                     to="/"
                                 >
-                                    Add Pet
+                                    SignUp
                                 </Link>
                             </li>
 
@@ -42,26 +49,47 @@ const NavigationBar = () => {
                                     style={{ color: "#8B5E3C" }}
                                     to="/signin"
                                 >
-                                    View Pets
+                                    SignIn
                                 </Link>
                             </li>
+
                             <li className="nav-item mx-2 mt-2 mt-lg-0">
                                 <Link
                                     className="btn btn-light rounded-pill px-4 fw-semibold"
                                     style={{ color: "#8B5E3C" }}
                                     to="/create"
                                 >
-                                    View Pets
+                                    Create Post
                                 </Link>
                             </li>
+
                             <li className="nav-item mx-2 mt-2 mt-lg-0">
                                 <Link
                                     className="btn btn-light rounded-pill px-4 fw-semibold"
                                     style={{ color: "#8B5E3C" }}
                                     to="/viewall"
                                 >
-                                    View Pets
+                                    View All
                                 </Link>
+                            </li>
+
+                            <li className="nav-item mx-2 mt-2 mt-lg-0">
+                                <Link
+                                    className="btn btn-light rounded-pill px-4 fw-semibold"
+                                    style={{ color: "#8B5E3C" }}
+                                    to="/viewmyposts"
+                                >
+                                    View My Posts
+                                </Link>
+                            </li>
+
+                            <li className="nav-item mx-2 mt-2 mt-lg-0">
+                                <button
+                                    onClick={LogOut}
+                                    className="btn btn-success rounded-pill px-4 fw-semibold"
+                                >
+                                    Logout
+                                </button>
                             </li>
 
                         </ul>
@@ -69,9 +97,8 @@ const NavigationBar = () => {
 
                 </div>
             </nav>
-
         </div>
-    )
-}
+    );
+};
 
-export default NavigationBar
+export default NavigationBar;
